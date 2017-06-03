@@ -1,10 +1,12 @@
 
 public class Interface {
-    private static ListadeColegas meusColgas;
-    private static  ListaLivros meusLivros;
+    private  ListadeColegas meusColgas;
+    private  ListaLivros meusLivros;
 
     public Interface()
     {
+        meusColgas = new ListadeColegas ();
+        meusLivros = new ListaLivros ();
         Colega c1 = new Colega ( "Fulano", "12345678");
         Colega c2 = new Colega ( "Dagoberto", "159753");
         Colega c3 = new Colega ( "Anacleto", "123478900");
@@ -37,7 +39,29 @@ public class Interface {
 
     }
 
-    public void listaTodosOsLivros() {
+    public void listaTodosOsLivrosAZ() {
+        meusLivros.ordenaNomeAZ ();
+        String nome = "Nome";
+        String autor = "Autor";
+        String id = "ID";
+        String situacao = "Situação";
+        System.out.printf ( "%50s %20s %10s %20s\n", nome, autor, id, situacao );
+        for (int i = 0; i < meusLivros.size ( ); i++) {
+
+            int situacaoEmprestimo = meusLivros.getLivro (i).getIdEmprestimo ();
+
+            if (situacaoEmprestimo != (-1)) {
+                situacao = meusColgas.getColega (situacaoEmprestimo).getNome ();
+            } else {
+                situacao = "Disponivel";
+            }
+            Livro c = meusLivros.getLivro ( i );
+            System.out.printf ( "%50s %20s %10d %20s\n",
+                    c.getNome ( ),  c.getAutor ( ),  c.getCodigo ( ) , situacao);
+        }
+    }
+    public void listaTodosOsLivrosId() {
+        meusLivros.ordenaId ();
         String nome = "Nome";
         String autor = "Autor";
         String id = "ID";
@@ -58,8 +82,21 @@ public class Interface {
                     c.getNome ( ),  c.getAutor ( ),  c.getCodigo ( ) , situacao);
         }
     }
+    public void listaTodosOsColegasAZ() {
+        meusColgas.ordenaNomeAZ ();
+        String nome = "Nome";
+        String telefone = "Telefone";
+        String id = "ID";
 
-    public void listaTodosOsColegas() {
+        System.out.printf ( "%50s %20s %10s\n", nome, telefone, id );
+        for (int i = 0; i < meusColgas.size ( ); i++) {
+            Colega c = meusColgas.getColega ( i );
+            System.out.printf ( "%50s %20s %10d\n",
+                    c.getNome ( ),  c.getTelefone ( ),  c.getCodigo ( ) );
+        }
+    }
+    public void listaTodosOsColegasId() {
+        meusColgas.ordenarId ();
         String nome = "Nome";
         String telefone = "Telefone";
         String id = "ID";
