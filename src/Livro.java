@@ -31,6 +31,11 @@ public class Livro implements Comparable<Livro> {
 
     public  void setIdEmprestimo(int idEmprestimo){ this.idEmprestimo = idEmprestimo;}
     public int getIdEmprestimo(){return idEmprestimo;}
+    public String getIdEmprestimoToString()
+    {
+        if(idEmprestimo == -1) return "Disponível";
+        else return Integer.toString ((idEmprestimo+1));
+    }
 
     public String toString() {
         return nome;

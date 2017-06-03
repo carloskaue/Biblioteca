@@ -29,12 +29,13 @@ public class ListaLivros {
         Collections.sort ( listaLivro );
     }
 
-    public void ordenaId() {
+    public void ordenarId() {
         Collections.sort ( listaLivro, new Comparator<Livro> ( ) {
             public int compare(Livro l1, Livro l2) {
                 return l1.getCodigoString ().compareTo (l2.getCodigoString ());
             }
         } );
     }
+
 
 }

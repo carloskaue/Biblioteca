@@ -7,6 +7,7 @@ public class Colega implements Comparable<Colega>{
     private String nome;
     private int codigo;
     private String telefone;
+    private int numLivros;
 
     public  Colega(){super();}
     public Colega(String nome,String telefone)
@@ -24,6 +25,11 @@ public class Colega implements Comparable<Colega>{
     public  void setCodigo(int codigo){this.codigo = codigo;}
     public  int getCodigo(){return  codigo;}
     public  String  getCodigoString(){return Integer.toString (codigo);}
+
+    public void increaseNumLivros(){numLivros++;}
+    public void decreaseNumLivros() { if (numLivros > 0) numLivros--;}
+    public String getNumLivros(){ return  Integer.toString (numLivros);}
+
 
     public int compareTo(Colega c) {
         return this.nome.compareToIgnoreCase ( c.nome );
