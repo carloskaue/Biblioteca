@@ -160,8 +160,6 @@ public class Interface {
 
     }
 
-
-
     private void consultarColega() {
         meusColgas.ordenarId ();
         boolean flag = false;
@@ -190,6 +188,15 @@ public class Interface {
         boolean flag = false;
         System.out.print ( "\nNome do livro: " );
         String str = teclado.nextLine ( );
+
+        if(flag == false)
+        {
+            System.out.println ("Livro não encontrado");
+        }
+    }
+    private boolean pesquisaLivro(String str)
+    {
+        boolean flag = false;
         for (int i = 0; i < meusLivros.size ( ); i++) {
             if(this.meusLivros.getLivro (i).getNome ().toUpperCase ().contains (str.toUpperCase ()))
             {
@@ -204,16 +211,8 @@ public class Interface {
 
             }
         }
-        if(flag == false)
-        {
-            System.out.println ("Livro não encontrado");
-        }
-
-
-
-
+        return flag;
     }
-
     private void cadastroDeColega() {
         Colega c = new Colega ();
         System.out.print ( "\nNome: " );
@@ -240,6 +239,7 @@ public class Interface {
         System.out.println ("Qual o livro a ser emprestado?");
         String str = teclado.nextLine ();
         System.out.println ("\n Livro:");
+        flag = pesquisaLivro(str);/*
         for (int i = 0; i < meusLivros.size ( ); i++) {
             if(this.meusLivros.getLivro (i).getNome ().toUpperCase ().contains (str.toUpperCase ()))
             {
@@ -254,7 +254,7 @@ public class Interface {
 
                 flag = true;
             }
-        }
+        }*/
         if(!flag) {System.out.println ("Livro não encontrado"); return;}
 
         System.out.println ("Id do Livro a ser emprestado?");
@@ -294,10 +294,25 @@ public class Interface {
     private void devolverLivro() {
         int indiceLivro;
         int indiceColega;
-
-        System.out.println ("Qual o livro a ser emprestado?");
+        boolean flag = false;
+        System.out.println ("Qual colega devolveu o livro?");
         String str = teclado.nextLine ();
+        for (int i = 0; i < meusColgas.size ( ); i++) {
+            if(this.meusColgas.getColega (i).getNome ().toUpperCase ().contains  (str.toUpperCase ()))
+            {
+                flag = true;
+                System.out.println ( "\nNome: " + meusColgas.getColega (i).getNome ()+
+                        "\nTelefone: " + meusColgas.getColega (i).getTelefone () +
+                        "\nID: "+ meusColgas.getColega (i).getCodigo () +
+                        "\nNumeros de Livros emprestados: " + meusColgas.getColega (i).getNumLivros ()
+                );
+            }
 
-        
+        }
+        if(flag == false)
+        {
+            System.out.println ("Contato não encontrado");
+            return;
+        }
     }
 }
